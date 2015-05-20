@@ -1,4 +1,6 @@
 // Air test
 
-__SCRIPT__
+__MODULES__
+__WMTOOLS__
+__SOURCES__
 

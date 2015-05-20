@@ -26,7 +26,8 @@ var MARIO_X = [
     "   2211111122   ",
     "                ",
     "                ",
-];
+].join("");
+
 var MARIO_R = [
     "     11111      ",
     "    111111111   ",
@@ -44,7 +45,8 @@ var MARIO_R = [
     "    111  111    ",
     "   222    222   ",
     "  2222    2222  ",
-];
+].join("");
+
 var MARIO_R_RUN1 = [
     "                ",
     "     11111      ",
@@ -62,7 +64,8 @@ var MARIO_R_RUN1 = [
     " 22111 111      ",
     " 2    222       ",
     "      2222      ",
-];
+].join("");
+
 var MARIO_R_RUN2 = [
     "     11111      ",
     "    111111111   ",
@@ -80,7 +83,8 @@ var MARIO_R_RUN2 = [
     " 22111   11122  ",
     " 222            ",
     "  222           ",
-];
+].join("");
+
 var MARIO_R_RUN3 = [
     "     11111      ",
     "    111111111   ",
@@ -98,7 +102,8 @@ var MARIO_R_RUN3 = [
     "     111222     ",
     "     2222222    ",
     "     2222       ",
-];
+].join("");
+
 var MARIO_R_JUMP = [
     "             333",
     "      11111  333",
@@ -116,7 +121,8 @@ var MARIO_R_JUMP = [
     "  22211111111122",
     " 2221111111     ",
     " 2  1111        ",
-];
+].join("");
+
 var MARIO_R_BRAKE = [
     "       111111   ",
     "     111111112  ",
@@ -134,7 +140,8 @@ var MARIO_R_BRAKE = [
     "       1222112 2",
     "           22222",
     "           2222 ",
-];
+].join("");
+
 var MARIO_R_SUPER = [
     "      11111     ",
     "    1111113     ",
@@ -168,7 +175,8 @@ var MARIO_R_SUPER = [
     "  2222    2222  ",
     "222222    222222",
     "222222    222222",
-];
+].join("");
+
 var MARIO_R_SUPER_SQUAT = [
     "                ",
     "                ",
@@ -202,7 +210,8 @@ var MARIO_R_SUPER_SQUAT = [
     " 1332      2331 ",
     "  2222    2222  ",
     "222222    222222",
-];
+].join("");
+
 var MARIO_R_SUPER_JUMP = [
     "            333 ",
     "           33233",
@@ -236,41 +245,46 @@ var MARIO_R_SUPER_JUMP = [
     "2221111         ",
     "22              ",
     "2               ",
-];
+].join("");
 
 var PALLETS = {
     mario1: { 1: "#EA1E1A", 2: "#A37F00", 3: "#FFD382" },
     luigi1: { 1: "#FFFFFF", 2: "#49A131", 3: "#FFD382" },
 };
 
+var canvas = document.createElement("canvas");
+canvas.width  = 1024;
+canvas.height = 1024;
+
+var res = { atlas: atlas, ctx: canvas.getContext("2d") };
+
 var mario_r = [
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R.join("").split(""),      PALLETS.mario1, 16, 16, 0, 0, 2); }, { aid: "mario_r", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN1.join("").split(""), PALLETS.mario1, 16, 16, 0, 0, 2); }, { aid: "mario_r_run1", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN2.join("").split(""), PALLETS.mario1, 16, 16, 0, 0, 2); }, { aid: "mario_r_run2", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN3.join("").split(""), PALLETS.mario1, 16, 16, 0, 0, 2); }, { aid: "mario_r_run3", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_JUMP.join("").split(""), PALLETS.mario1, 16, 16, 0, 0, 2); }, { aid: "mario_r_jump", sw: 32, sh: 32 }),
+    new Air.Sprite(res, "mario_r",      32, 32, function(ctx) { _draw16x16(ctx, MARIO_R,      PALLETS.mario1, 2); }),
+    new Air.Sprite(res, "mario_r_run1", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN1, PALLETS.mario1, 2); }),
+    new Air.Sprite(res, "mario_r_run2", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN2, PALLETS.mario1, 2); }),
+    new Air.Sprite(res, "mario_r_run3", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN3, PALLETS.mario1, 2); }),
+    new Air.Sprite(res, "mario_r_jump", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_JUMP, PALLETS.mario1, 2); }),
 ];
 var mario_l = [
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R.join("").split(""),      PALLETS.mario1, 16, 16, 0, 0, 2, true); }, { aid: "mario_l", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN1.join("").split(""), PALLETS.mario1, 16, 16, 0, 0, 2, true); }, { aid: "mario_l_run1", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN2.join("").split(""), PALLETS.mario1, 16, 16, 0, 0, 2, true); }, { aid: "mario_l_run2", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN3.join("").split(""), PALLETS.mario1, 16, 16, 0, 0, 2, true); }, { aid: "mario_l_run3", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_JUMP.join("").split(""), PALLETS.mario1, 16, 16, 0, 0, 2, true); }, { aid: "mario_l_jump", sw: 32, sh: 32 }),
+    new Air.Sprite(res, "mario_l",      32, 32, function(ctx) { _draw16x16(ctx, MARIO_R,      PALLETS.mario1, 2, true); }),
+    new Air.Sprite(res, "mario_l_run1", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN1, PALLETS.mario1, 2, true); }),
+    new Air.Sprite(res, "mario_l_run2", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN2, PALLETS.mario1, 2, true); }),
+    new Air.Sprite(res, "mario_l_run3", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN3, PALLETS.mario1, 2, true); }),
+    new Air.Sprite(res, "mario_l_jump", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_JUMP, PALLETS.mario1, 2, true); }),
 ];
-
 var luigi_r = [
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R.join("").split(""),      PALLETS.luigi1, 16, 16, 0, 0, 2); }, { aid: "luigi_r", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN1.join("").split(""), PALLETS.luigi1, 16, 16, 0, 0, 2); }, { aid: "luigi_r_run1", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN2.join("").split(""), PALLETS.luigi1, 16, 16, 0, 0, 2); }, { aid: "luigi_r_run2", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN3.join("").split(""), PALLETS.luigi1, 16, 16, 0, 0, 2); }, { aid: "luigi_r_run3", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_JUMP.join("").split(""), PALLETS.luigi1, 16, 16, 0, 0, 2); }, { aid: "luigi_r_jump", sw: 32, sh: 32 }),
+    new Air.Sprite(res, "luigi_r",      32, 32, function(ctx) { _draw16x16(ctx, MARIO_R,      PALLETS.luigi1, 2); }),
+    new Air.Sprite(res, "luigi_r_run1", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN1, PALLETS.luigi1, 2); }),
+    new Air.Sprite(res, "luigi_r_run2", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN2, PALLETS.luigi1, 2); }),
+    new Air.Sprite(res, "luigi_r_run3", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN3, PALLETS.luigi1, 2); }),
+    new Air.Sprite(res, "luigi_r_jump", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_JUMP, PALLETS.luigi1, 2); }),
 ];
 var luigi_l = [
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R.join("").split(""),      PALLETS.luigi1, 16, 16, 0, 0, 2, true); }, { aid: "luigi_l", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN1.join("").split(""), PALLETS.luigi1, 16, 16, 0, 0, 2, true); }, { aid: "luigi_l_run1", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN2.join("").split(""), PALLETS.luigi1, 16, 16, 0, 0, 2, true); }, { aid: "luigi_l_run2", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_RUN3.join("").split(""), PALLETS.luigi1, 16, 16, 0, 0, 2, true); }, { aid: "luigi_l_run3", sw: 32, sh: 32 }),
-    new Air.CanvasFrame(atlas, function(ctx, options) { drawDots(ctx, MARIO_R_JUMP.join("").split(""), PALLETS.luigi1, 16, 16, 0, 0, 2, true); }, { aid: "luigi_l_jump", sw: 32, sh: 32 }),
+    new Air.Sprite(res, "luigi_l",      32, 32, function(ctx) { _draw16x16(ctx, MARIO_R,      PALLETS.luigi1, 2, true); }),
+    new Air.Sprite(res, "luigi_l_run1", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN1, PALLETS.luigi1, 2, true); }),
+    new Air.Sprite(res, "luigi_l_run2", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN2, PALLETS.luigi1, 2, true); }),
+    new Air.Sprite(res, "luigi_l_run3", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_RUN3, PALLETS.luigi1, 2, true); }),
+    new Air.Sprite(res, "luigi_l_jump", 32, 32, function(ctx) { _draw16x16(ctx, MARIO_R_JUMP, PALLETS.luigi1, 2, true); }),
 ];
 
 var mario_cue_r1 = new Air.Cue("MARIO_SEEK",           [mario_r[0], mario_l[0]],             [DELAY * 5, DELAY * 5],                   [0, 1, 0, 1]  );
@@ -294,16 +308,22 @@ function _times(array, times) {
     return Array.prototype.concat.apply([], rv);
 }
 
-function drawDots(ctx, dotData, pallet, dataWidth, dataHeight, dx, dy, zoom, reverse) {
-    dx = dx || 0;
-    dy = dy || 0;
-    zoom = zoom || 2;
+function _draw16x16(ctx,
+                    dotData,
+                    palletData,    // @arg ColorObject|ColorArray - { no: ColorName, ... } or [ ColorName ]
+                    zoom,      // @arg Number = 1
+                    reverse) { // @arg Boolean = false
+    zoom = zoom || 1;
     reverse = reverse || false;
+    var dx = 0;
+    var dy = 0;
+    var dataWidth = 16;
+    var dataHeight = 16;
 
     for (var y = 0; y < dataHeight; ++y) {
         for (var x = 0; x < dataWidth; ++x) {
             var i = y * dataWidth + (reverse ? dataWidth - x - 1 : x);
-            var color = pallet[parseInt(dotData[i], 10) || 0] || "transparent";
+            var color = palletData[parseInt(dotData[i], 10) || 0] || "transparent";
 
             ctx.beginPath();
             ctx.fillStyle = color;

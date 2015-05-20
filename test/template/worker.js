@@ -11,7 +11,9 @@ onmessage = function(event) {
         self.console.error = function() {};
     }
 
-    __SCRIPT__
+    __MODULES__
+    __WMTOOLS__
+    __SOURCES__
 
     self.postMessage({ TEST_ERROR_MESSAGE: self.TEST_ERROR_MESSAGE || "" });
 };

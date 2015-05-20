@@ -1,12 +1,12 @@
 {
-  "name": "uupaa.air5.js",
+  "name": "uupaa.air.js",
   "version": "0.0.0",
   "description": "",
-  "url": "https://github.com/uupaa/Air5.js",
+  "url": "https://github.com/uupaa/Air.js",
   "keywords": ["uupaa", "WebModule", "Unstable"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/uupaa/Air5.js.git"
+    "url": "https://github.com/uupaa/Air.js.git"
   },
   "scripts": {
     "sync": "node ../WebModule/run/sync.js; npm update; node ../WebModule/run/page.js",
@@ -31,7 +31,7 @@
     "develop": false,
     "label": ["@dev"],
     "browser": {
-      "source": ["lib/Air.js", "lib/Air.Node.js", "lib/Air.NodeA.js", "lib/Air.ImageFrame.js", "lib/Air.CanvasFrame.js", "lib/Air.Cue.js"],
+      "source": ["lib/Air.js", "lib/Air.Node.js", "lib/Air.NodeA.js", "lib/Air.ImageFrame.js", "lib/Air.Sprite.js", "lib/Air.Cue.js"],
       "output": "release/Air.b.min.js"
     }
   },

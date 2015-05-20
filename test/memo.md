@@ -1,3 +1,9 @@
+## ChangeLog
+- 2015-05-18
+    - Air.CanvasFrame を廃止
+    - Air.Sprite(id, width, height, red, draw, options) を追加
+
+
 var atlas = new Atlas();
 
 // --- png/jpeg/gif ---

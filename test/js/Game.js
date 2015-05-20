@@ -1,14 +1,19 @@
 (function(global) {
 
-    function Game(resource) { // @arg Object - { atlas, clock, render, asset }
-        this._atlas  = resource["atlas"];
-        this._clock  = resource["clock"];
-        this._render = resource["render"];
-        this._asset  = resource["asset"];
+    function Game(resources) { // @arg Object - resources { atlas, clock, render, asset }
+                               // @resources.atlas TextureAtlas
+                               // @resources.clock Clock
+                               // @resources.render Air
+                               // @resources.asset Mario
+        this._atlas  = resources["atlas"];
+        this._clock  = resources["clock"];
+        this._render = resources["render"];
+        this._asset  = resources["asset"];
         this._setup();
         this._clock.start();
         this._render.start();
     }
+
     Game.prototype._setup = function() {
         var that = this;
 

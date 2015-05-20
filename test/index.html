@@ -6,11 +6,10 @@
 <input type="button" value="play"       onclick="game && game.play()" />
 <input type="button" value="pause"      onclick="game && game.pause()" />
 <br />
-<input type="button" value="2015/1月"   onclick="setConfig('CACHE', 'off');setConfig('SIZE',  '960x480');setConfig('CHARS', 1000);setConfig('BS',    32);setConfig('DELAY', 100); location.reload()" />
-<input type="button" value="2015/4月"   onclick="setConfig('CACHE', 'off');setConfig('SIZE',  '1920x1080');setConfig('CHARS', 2000);setConfig('BS',    32);setConfig('DELAY', 100); location.reload()" />
-<input type="button" value="2015/5月"   onclick="setConfig('CACHE', 'auto');setConfig('SIZE', '1920x1080');setConfig('CHARS', 8000);setConfig('BS',    32);setConfig('DELAY', 0); location.reload()" />
+<input type="button" value="2015/2月"  onclick="setConfig('CACHE', 'off'); setConfig('BS',    8); setConfig('DELAY', 100); setConfig('CHARS', 500); setConfig('SIZE',  '960x480'); location.reload()" />
+<input type="button" value="2015/4月"  onclick="setConfig('CACHE', 'off'); setConfig('BS',    8); setConfig('DELAY', 100); setConfig('CHARS', 2000);setConfig('SIZE',  '960x480'); location.reload()" />
+<input type="button" value="2015/5月"  onclick="setConfig('CACHE', 'auto');setConfig('BS',   32); setConfig('DELAY', 0);   setConfig('CHARS', 8000);setConfig('SIZE',  '1920x1080'); location.reload()" />
 <br />
-
 <input type="button" value="cache off"  onclick="setConfig('CACHE', 'off'); location.reload()" />
 <input type="button" value="cache on"   onclick="setConfig('CACHE', 'on');  location.reload()" />
 <input type="button" value="cache auto" onclick="setConfig('CACHE', 'auto');location.reload()" />
@@ -22,10 +21,12 @@
 <input type="button" value="4000"       onclick="setConfig('CHARS', 4000);  location.reload()" />
 <input type="button" value="8000"       onclick="setConfig('CHARS', 8000);  location.reload()" />
 <br />
-<input type="button" value="640x480"    onclick="setConfig('SIZE',  '640x480');   location.reload()" />
-<input type="button" value="960x480"    onclick="setConfig('SIZE',  '960x480');   location.reload()" />
+<input type="button" value="480x320"    onclick="setConfig('SIZE',  '480x320'); location.reload()" />
+<input type="button" value="960x480"    onclick="setConfig('SIZE',  '960x480'); location.reload()" />
 <input type="button" value="1920x1080"  onclick="setConfig('SIZE',  '1920x1080'); location.reload()" />
-<input type="button" value="480x960"    onclick="setConfig('SIZE',  '480x960');   location.reload()" />
+|
+<input type="button" value="320x480"    onclick="setConfig('SIZE',  '320x480'); location.reload()" />
+<input type="button" value="480x960"    onclick="setConfig('SIZE',  '480x960'); location.reload()" />
 <input type="button" value="1080x1920"  onclick="setConfig('SIZE',  '1080x1920'); location.reload()" />
 <br />
 <input type="button" value="bs 8"       onclick="setConfig('BS',    8);     location.reload()" />
@@ -47,12 +48,12 @@
 <script src="../node_modules/uupaa.thread.js/lib/Thread.js"></script>
 <script src="../node_modules/uupaa.thread.js/lib/ThreadPool.js"></script>
 <script src="../node_modules/uupaa.textureatlas.js/lib/TextureAtlas.js"></script>
-<script src=".././test/wmtools.js"></script>
+<script src="wmtools.js"></script>
 <script src="../lib/Air.js"></script>
 <script src="../lib/Air.Node.js"></script>
 <script src="../lib/Air.NodeA.js"></script>
 <script src="../lib/Air.ImageFrame.js"></script>
-<script src="../lib/Air.CanvasFrame.js"></script>
+<script src="../lib/Air.Sprite.js"></script>
 <script src="../lib/Air.Cue.js"></script>
 
 <script>
@@ -83,7 +84,7 @@ TextureAtlas.MIN_BLOCK_SIZE = BLOCK_SIZE;
 TextureAtlas.MAX_BLOCK_SIZE = 64;
 
 var atlas = new TextureAtlas({ useCache: useCache });
-var perf  = BENCHMARK ? new Perf({ x: 360, y: 5 }) : {};
+var perf  = BENCHMARK ? new Perf({ x: 360, y: 30 }) : {};
 var clock = new Clock([], { vsync: true, start: false });
 
 
@@ -97,7 +98,6 @@ case "off": document.querySelector("input[type=button][value='cache off']").clas
 case "on":  document.querySelector("input[type=button][value='cache on']").classList.add("selected"); break;
 case "auto":document.querySelector("input[type=button][value='cache auto']").classList.add("selected"); break;
 }
-
 if (spec.MAX_TOUCH_POINTS) {
     CHARACTERS = Math.min(CHARACTERS, 2000);
 }
@@ -110,9 +110,10 @@ case 4000:  document.querySelector("input[type=button][value='4000']").classList
 case 8000:  document.querySelector("input[type=button][value='8000']").classList.add("selected"); break;
 }
 switch (SIZE) {
-case "640x480":   document.querySelector("input[type=button][value='640x480']").classList.add("selected"); break;
+case "480x320":   document.querySelector("input[type=button][value='480x320']").classList.add("selected"); break;
 case "960x480":   document.querySelector("input[type=button][value='960x480']").classList.add("selected"); break;
 case "1920x1080": document.querySelector("input[type=button][value='1920x1080']").classList.add("selected"); break;
+case "320x480":   document.querySelector("input[type=button][value='320x480']").classList.add("selected"); break;
 case "480x960":   document.querySelector("input[type=button][value='480x960']").classList.add("selected"); break;
 case "1080x1920": document.querySelector("input[type=button][value='1080x1920']").classList.add("selected"); break;
 }

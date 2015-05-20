@@ -12,6 +12,8 @@ onmessage = function(event) {
     }
 
     
+    
+    
 
     self.postMessage({ TEST_ERROR_MESSAGE: self.TEST_ERROR_MESSAGE || "" });
 };
