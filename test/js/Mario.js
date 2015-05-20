@@ -318,13 +318,14 @@ function _marioAction(event) {
 
     switch (node.cue.id) {
     case "MARIO_SEEK": break;
-    case "MARIO_WALK_TO_RIGHT": node.x += 5; break;
-    case "MARIO_WALK_TO_LEFT":  node.x -= 5; break;
+    case "MARIO_WALK_TO_RIGHT": node.x += (5 * node.sx); break;
+    case "MARIO_WALK_TO_LEFT":  node.x -= (5 * node.sy); break;
     case "MARIO_JUMP":
         if (node.jump) {
             node.jump.reuse();
         } else {
-            node.jump = new Jump(clock, 24, node.y, function(y, cy, iy) {
+            //node.jump = new Jump(clock, 24, node.y, function(y, cy, iy) {
+            node.jump = new Jump(clock, Math.min(14 * node.sy, 70), node.y, function(y, cy, iy) {
                                 if (cy <= 0) {
                                     node.y = iy;
                                     node.command("NEXT_CUE");
@@ -341,9 +342,9 @@ function _marioAction(event) {
 function _luigiAction(event) {
     var node = event.target;
     switch (node.cueIndex) {
-    case 0: node.x += 5; break;
+    case 0: node.x += (5 * node.sx); break;
     case 1: break;
-    case 2: node.x -= 5; break;
+    case 2: node.x -= (5 * node.sy); break;
     case 3: break;
     }
 }

@@ -18,11 +18,11 @@
         var luigi_action = this._asset.get("luigi_action")
 
         for (var i = 0, iz = CHARACTERS / 2; i < iz; ++i) {
-            _createNode(i, mario_cues, mario_action);
-            _createNode(i, luigi_cues, luigi_action);
+            _createNode(i, iz, mario_cues, mario_action);
+            _createNode(i, iz, luigi_cues, luigi_action);
         }
 
-        function _createNode(index, cues, action) {
+        function _createNode(index, length, cues, action) {
             var node = that._render.createNode("NodeA", { name: "node-" + index, cues: cues, loops: 1 });
             node.x = (Math.random() * SCREEN_WIDTH);
             node.y = (Math.random() * SCREEN_HEIGHT);
@@ -36,6 +36,21 @@
                 }
             };
             var scale = (((Math.random() * 1.8 + 0.2) * 10) | 0) / 10;
+
+            // big mario
+            if (length > 1000) {
+                if (index === length - 2) {
+                    scale = 5;
+                    node.x = (Math.random() * (SCREEN_WIDTH - 200)  + 50);
+                    node.y = (Math.random() * (SCREEN_HEIGHT - 200) + 50);
+                }
+                if (index === length - 1) {
+                    scale = 20;
+                    node.x = (Math.random() * (SCREEN_WIDTH - 400)  + 50);
+                    node.y = (Math.random() * (SCREEN_HEIGHT - 400) + 50);
+                }
+            }
+
             node.sx = scale;
             node.sy = scale;
             that._render.rootNode.add(node);
