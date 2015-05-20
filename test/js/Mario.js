@@ -339,7 +339,7 @@ function _marioAction(event) {
     switch (node.cue.id) {
     case "MARIO_SEEK": break;
     case "MARIO_WALK_TO_RIGHT": node.x += (5 * node.sx); break;
-    case "MARIO_WALK_TO_LEFT":  node.x -= (5 * node.sy); break;
+    case "MARIO_WALK_TO_LEFT":  node.x -= (5 * node.sx); break;
     case "MARIO_JUMP":
         if (node.jump) {
             node.jump.reuse();
@@ -364,7 +364,7 @@ function _luigiAction(event) {
     switch (node.cueIndex) {
     case 0: node.x += (5 * node.sx); break;
     case 1: break;
-    case 2: node.x -= (5 * node.sy); break;
+    case 2: node.x -= (5 * node.sx); break;
     case 3: break;
     }
 }
